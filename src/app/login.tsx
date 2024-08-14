@@ -1,9 +1,10 @@
-import { TextInput, View, Text } from "react-native";
+import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import { loginStyles } from "../assets/styles/login";
 import { useState } from "react";
 import { generalStyles } from "../assets/styles/general";
+import { Link } from "expo-router";
 
-export function login() {
+export default function login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -34,6 +35,13 @@ export function login() {
             onChangeText={setSenha}
           />
         </View>
+      </View>
+      <View style={loginStyles.containerbtn}>
+      <Link href={"/menu"} asChild>
+        <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
+          <Text style={generalStyles.textBtnPrimary}>Login</Text>
+        </TouchableOpacity>
+      </Link>
       </View>
     </View>
   );

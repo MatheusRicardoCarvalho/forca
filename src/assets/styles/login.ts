@@ -34,7 +34,8 @@ export const loginStyles = StyleSheet.create({
       fontFamily: 'Roboto_900Black',
     },
     inputContainer: {
-        borderWidth: 1,
+        borderWidth: 2,
+        paddingLeft: 15,
         borderColor: Colors.light.textBold,
         borderRadius: 20,
         height: 60,
@@ -44,5 +45,10 @@ export const loginStyles = StyleSheet.create({
         fontSize: 20,
         fontFamily: "Roboto_900Black",
         color: Colors.light.textGrey,
-      }
+      },
+    containerbtn: {
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: "20%"
+    }
   });

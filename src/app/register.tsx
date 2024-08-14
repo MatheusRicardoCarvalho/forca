@@ -1,15 +1,20 @@
-import { TextInput, View } from "react-native";
+import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import { loginStyles } from "../assets/styles/login";
 import { useState } from "react";
 import { generalStyles } from "../assets/styles/general";
+import { Link } from "expo-router";
 
-export function register() {
+export default function register() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
   
     return (
       <View style={generalStyles.containerFullScreen}>
+        <View style={loginStyles.titleContainer}>
+        <Text style={loginStyles.title2}>Jogo Da</Text>
+        <Text style={loginStyles.title1}>Forca</Text>
+      </View>
         <View style={loginStyles.optionsContainer}>
         <View style={loginStyles.inputContainer}>
           <TextInput
@@ -40,6 +45,13 @@ export function register() {
             onChangeText={setSenha}
           />
         </View>
+      </View>
+      <View style={loginStyles.containerbtn}>
+      <Link href={"/login"} asChild>
+        <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
+          <Text style={generalStyles.textBtnPrimary}>Cadastrar</Text>
+        </TouchableOpacity>
+      </Link>
       </View>
       </View>
     );
