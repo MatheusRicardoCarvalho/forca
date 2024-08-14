@@ -1,36 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { loginStyles } from "../assets/styles/login";
+import { generalStyles } from "../assets/styles/general";
+import forcaImage from "../assets/images/forca.png"
+import { Link } from "expo-router";
 
-
-export default function HomeScreen() {
+export default function index() {
   return (
-      <View>
-        <Text style={styles.texts}>
-          Agora sim
-        </Text>
+    <View style={generalStyles.containerFullScreen}>
+      <View style={loginStyles.titleContainer}>
+        <Text style={loginStyles.title2}>Jogo Da</Text>
+        <Text style={loginStyles.title1}>Forca</Text>
       </View>
-    
-    );
+      <View style={loginStyles.optionsContainer}>
+        <Link href={"/register"} asChild>
+        <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
+          <Text style={generalStyles.textBtnPrimary}>Cadastrar-se</Text>
+        </TouchableOpacity>
+        </Link>
+        <Link href={"/login"} asChild>
+        <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
+          <Text style={generalStyles.textBtnPrimary}>Login</Text>
+        </TouchableOpacity>
+        </Link>
+      </View>
+      <View style={loginStyles.forcaContainer}>
+        <Image 
+        source={forcaImage}
+        />
+      </View>
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-  texts: {
-    fontFamily: 'roboto',
-    fontWeight: '900'
-  }
-});

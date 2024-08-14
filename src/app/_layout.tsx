@@ -1,7 +1,7 @@
-
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import {Roboto_900Black} from '@expo-google-fonts/roboto'
+import { useEffect } from 'react';
+import { View } from 'react-native';
 import useLoadFonts from '../hooks/useLoadFonts';
 
 SplashScreen.preventAutoHideAsync();
@@ -9,11 +9,19 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const { fontsLoaded, onLayoutRootView } = useLoadFonts();
 
-  if(!fontsLoaded) return null;
-  
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
+
   return (
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
+    </View>
   );
 }
