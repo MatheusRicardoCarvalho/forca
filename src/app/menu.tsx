@@ -24,7 +24,7 @@ export default function menu() {
                         </Text>
                     </TouchableOpacity>
                 </Link>
-                <Link href={"/"} asChild>
+                <Link href={"/scoreBoard"} asChild>
                     <TouchableOpacity style={generalStyles.btnPrimaryMedium}>
                         <Text style={generalStyles.textBtnPrimary}>
                             Recordes
