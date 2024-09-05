@@ -5,8 +5,11 @@ import Key from "./Key/Key";
 import { letters } from "./alfabeto";
 import { keyboardStyles } from "./styles";
 
-export default function KeyBoardGame() {  
+interface KeyBoardGameProps {
+    verificarLetra: (letra: string) => void
+}
 
+export default function KeyBoardGame(props: KeyBoardGameProps) {  
   // Estado para armazenar quais teclas foram pressionadas
   const [pressedKeys, setPressedKeys] = useState<string[]>([]);
 
@@ -14,6 +17,7 @@ export default function KeyBoardGame() {
   const handlePress = (key: string) => {
     if (!pressedKeys.includes(key)) {
       setPressedKeys([...pressedKeys, key]);
+      props.verificarLetra(key)
     }
   };
 
