@@ -17,7 +17,7 @@ export default function menu() {
                 />
             </View>
             <View style={loginStyles.optionsContainer}>
-                <Link href={"/"} asChild>
+                <Link href={"/game"} asChild>
                     <TouchableOpacity style={generalStyles.btnPrimaryMedium}>
                         <Text style={generalStyles.textBtnPrimary}>
                             Jogar
