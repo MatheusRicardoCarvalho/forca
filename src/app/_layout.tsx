@@ -26,7 +26,8 @@ export default function RootLayout() {
         <Stack.Screen name="menu" options={{ headerShown: false }} />
         <Stack.Screen name='scoreBoard' options={{ headerShown: false }} />
         <Stack.Screen name='game' options={{ headerShown: false }} />
-
+        <Stack.Screen name='loseScreen' options={{ headerShown: false }} />
+        <Stack.Screen name='winScreen' options={{ headerShown: false }} />
       </Stack>
     </View>
   );

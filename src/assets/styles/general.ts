@@ -28,12 +28,25 @@ export const generalStyles = StyleSheet.create({
         ...baseBtnStyle,
         width: 231,
         height: 71
+    },
+    btnSecondaryMedium: {
+        ...baseBtnStyle,
+        width: 231,
+        height: 71,
+        backgroundColor: Colors.light.btnSecondary,
+        borderWidth: 2
     }
     ,
     textBtnPrimary: {
         fontSize: 36,
         fontFamily: "Roboto_900Black",
         color: Colors.light.textLight,
+        
+    },
+    textBtnSecondary: {
+        fontSize: 36,
+        fontFamily: "Roboto_900Black",
+        color: "#000",
         
     }
 })

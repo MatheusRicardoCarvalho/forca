@@ -1,20 +1,22 @@
 import { generalStyles } from "@/src/assets/styles/general";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity , Text} from "react-native";
+
 
 interface Props {
     textBtn: string;
     onPress?: () => void;
 }
 
-export default function ButtonPrimary({ textBtn, onPress }: Props) {
-    return (
+
+export default function ButtonSecondary ({textBtn, onPress}: Props) {
+    return(
         <TouchableOpacity 
-            style={generalStyles.btnPrimaryMedium}
+            style={generalStyles.btnSecondaryMedium}
             onPress={onPress} 
         >
-            <Text style={generalStyles.textBtnPrimary}>
+            <Text style={generalStyles.textBtnSecondary}>
                 {textBtn}
             </Text>
         </TouchableOpacity>
-    );
+    )
 }

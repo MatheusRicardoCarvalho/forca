@@ -1,15 +1,16 @@
 import { View, Text, Image, Modal, Pressable } from "react-native";
 import KeyBoardGame from "../components/KeyBoardGame/KeyBoardGame";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { gameDataConfig, Tema } from "../gameDataConfig/gameDataConfig";
+import { CalculateScore, gameDataConfig, Tema } from "../gameDataConfig/gameDataConfig";
 import { WordGuess } from "../components/WordGuess/WordGuess";
 import { gameStyles } from "../assets/styles/game";
-import { Cronometro } from "../components/Cronometro/Cronometro"; // Importa o cronômetro
+import { Cronometro } from "../components/Cronometro/Cronometro"; 
 import moment from 'moment';
 import forca from "../assets/images/forca.png";
 import { Boneco } from "../components/Boneco/Boneco";
 import ButtonPrimary from "../components/ButtonPrimary/ButtonPrimary";
-import { stylesModal } from "../assets/styles/modal";
+import ModalEuSei from "../components/ModalEuSei/ModalEuSei";
+import { router } from "expo-router";
 
 export default function Game() {
     const [tema, setTema] = useState<Tema>();
@@ -20,12 +21,13 @@ export default function Game() {
     const [cronometroIniciado, setCronometroIniciado] = useState(false);
     const [tempoDecorrido, setTempoDecorrido] = useState(0);
     const [modalVisible, setModalVisible] = useState(false);
+    const [tentativas, setTentativas] = useState(0)
 
     useLayoutEffect(() => {
         const { tema, palavra } = gameDataConfig();
         setPalavra(palavra);
         setTema(tema);
-        iniciarCronometro(); // Inicia o cronômetro no início do jogo
+        iniciarCronometro(); 
     }, []);
 
     useEffect(() => {
@@ -33,6 +35,8 @@ export default function Game() {
     }, [letrasAcertadas, countErrors]);
 
     function verificarLetra(letra: string) {
+        setTentativas(prev => prev +1)
+
         if (palavra.toLowerCase().includes(letra.toLowerCase())) {
             setLetrasAcertadas(prevLetrasAcertadas => {
                 if (!prevLetrasAcertadas.includes(letra.toLowerCase())) {
@@ -47,6 +51,17 @@ export default function Game() {
         }
     }
 
+    function verificarPalavraTentada(tentativa: string) {
+        setTentativas(prev => prev +1)
+
+        if (tentativa.toLowerCase() === palavra.toLowerCase()) {
+            WinGame();
+        } else {
+            alert("Palavra incorreta!");
+            setCountErrors(prev => prev + 1);
+        }
+    }
+
     function StatusGame() {
         const letrasUnicasPalavra = Array.from(new Set(palavra.toLowerCase()));
 
@@ -56,22 +71,43 @@ export default function Game() {
 
     function LoseGame() {
         pausarCronometro();
-        alert("PERDEU!");
+        endGame(false)
     }
 
     function WinGame() {
-        pausarCronometro(); // Pausa o cronômetro ao vencer
+        pausarCronometro();
         const tempoFinalFormatado = moment.utc(tempoDecorrido * 1000).format('HH:mm:ss');
-        setTempoFinal(tempoFinalFormatado); // Salva o tempo final formatado
-        alert(`GANHOU! Tempo total: ${tempoFinalFormatado}`);
+        setTempoFinal(tempoFinalFormatado);
+        endGame(true)
     }
 
+    function endGame(win: boolean) {
+        const tempoFinalFormatado = moment.utc(tempoDecorrido * 1000).format('HH:mm:ss');
+
+        const score = CalculateScore(tempoFinalFormatado, tentativas, win);
+    
+        if (win) {
+            console.log("Tentativas: " + tentativas + "\n Time: " + tempoFinalFormatado);
+            router.push({
+                pathname: "/winScreen",
+                params: { score },
+            });
+        } else {
+            console.log("Tentativas: " + tentativas + "\n Time: " + tempoFinalFormatado);
+            router.push({
+                pathname: "/loseScreen",
+                params: { score },
+            });
+        }
+    }
+    
+
     const iniciarCronometro = () => {
-        setCronometroIniciado(true); // Iniciar cronômetro
+        setCronometroIniciado(true);
     };
 
     const pausarCronometro = () => {
-        setCronometroIniciado(false); // Pausar cronômetro
+        setCronometroIniciado(false);
     };
 
     return (
@@ -79,7 +115,7 @@ export default function Game() {
             <Text style={gameStyles.title}>Tema: {tema}</Text>
             <Cronometro
                 iniciado={cronometroIniciado}
-                onTempoDecorrido={setTempoDecorrido} // Atualiza o tempo no estado
+                onTempoDecorrido={setTempoDecorrido}
             />
 
             <Image
@@ -87,7 +123,6 @@ export default function Game() {
                 style={gameStyles.forca}
             />
             <Boneco countErrors={countErrors}></Boneco>
-
 
             <View style={gameStyles.MainGameView}>
                 <WordGuess palavra={palavra} letrasAcertadas={letrasAcertadas} />
@@ -99,18 +134,14 @@ export default function Game() {
                     onRequestClose={() => {
                         setModalVisible(!modalVisible);
                     }}>
-                    <View style={stylesModal.centeredView}>
-                        <View style={stylesModal.modalView}>
-                            <Text style={stylesModal.modalText}>Hello World!</Text>
-                            <Pressable
-                                style={[stylesModal.button, stylesModal.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}>
-                                <Text style={stylesModal.textStyle}>Hide Modal</Text>
-                            </Pressable>
-                        </View>
-                    </View>
+                    <ModalEuSei 
+                        modalVisible={modalVisible} 
+                        setModalVisible={setModalVisible}
+                        palavraCorreta={palavra} 
+                        onValidarPalavra={verificarPalavraTentada} // Valida a tentativa
+                    />
                 </Modal>
-                <ButtonPrimary textBtn="Eu sei!" />
+                <ButtonPrimary textBtn="Eu sei!" onPress={() => setModalVisible(true)} />
             </View>
         </View>
     );

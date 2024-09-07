@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "758737552633",
+    "project_id": "forca-b67ad",
+    "storage_bucket": "forca-b67ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758737552633:android:379f5294b17db6d0bd0e28",
+        "android_client_info": {
+          "package_name": "com.matheuscarvalho.forca"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvcnzTe1dAEg7vzO1Ap8dwwyf0rINFmlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
