@@ -2,13 +2,28 @@ import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import { loginStyles } from "../assets/styles/login";
 import { useState } from "react";
 import { generalStyles } from "../assets/styles/general";
-import { Link } from "expo-router";
-
+import { Link, router } from "expo-router";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {firebase} from "../services/firebase"
 export default function register() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-  
+    const auth = getAuth(firebase);
+
+    function createUser(){
+      createUserWithEmailAndPassword(auth, email, senha)
+      .then((userCredential) => {
+        router.push("/menu")
+      const user = userCredential.user;
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("Erro ao criar usuário ! \nTente novamente mais tarde\n\n"+errorMessage)
+  });
+    
+    }
     return (
       <View style={generalStyles.containerFullScreen}>
         <View style={loginStyles.titleContainer}>
@@ -47,11 +62,9 @@ export default function register() {
         </View>
       </View>
       <View style={loginStyles.containerbtn}>
-      <Link href={"/login"} asChild>
-        <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
+        <TouchableOpacity style={generalStyles.btnPrimaryLarge} onPress={() => createUser()}>
           <Text style={generalStyles.textBtnPrimary}>Cadastrar</Text>
         </TouchableOpacity>
-      </Link>
       </View>
       </View>
     );

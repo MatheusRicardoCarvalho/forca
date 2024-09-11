@@ -29,11 +29,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      "expo-firebase-core",
-      {
-        "googleServicesFile": "./google-services.json"
-      }
+      "expo-router"
     ],
     "experiments": {
       "typedRoutes": true

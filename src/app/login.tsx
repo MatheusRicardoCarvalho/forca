@@ -2,12 +2,28 @@ import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import { loginStyles } from "../assets/styles/login";
 import { useState } from "react";
 import { generalStyles } from "../assets/styles/general";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { firebase } from "../services/firebase";
 
 export default function login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const auth = getAuth(firebase);
 
+  function signIn(){
+    signInWithEmailAndPassword(auth, email, senha)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    router.push("/menu")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("Erro no login ! \nTente novamente mais tarde")
+  });
+
+  }
   return (
     <View style={generalStyles.containerFullScreen}>
       <View style={loginStyles.titleContainer}>
@@ -37,11 +53,9 @@ export default function login() {
         </View>
       </View>
       <View style={loginStyles.containerbtn}>
-      <Link href={"/menu"} asChild>
-        <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
+        <TouchableOpacity style={generalStyles.btnPrimaryLarge} onPress={() => signIn()}>
           <Text style={generalStyles.textBtnPrimary}>Login</Text>
         </TouchableOpacity>
-      </Link>
       </View>
     </View>
   );
