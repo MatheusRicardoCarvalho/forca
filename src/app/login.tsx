@@ -7,7 +7,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebase } from "../services/firebase";
 import AuthContext from "../context/AuthContext";
 
-export default function login() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const authContext = useContext(AuthContext);

@@ -27,12 +27,12 @@ export default function Menu() {
         <Image source={boneco} />
       </View>
       <View style={loginStyles.optionsContainer}>
-        <Link href={"/game"} asChild>
+        <Link href={"/Game"} asChild>
           <TouchableOpacity style={generalStyles.btnPrimaryMedium}>
             <Text style={generalStyles.textBtnPrimary}>Jogar</Text>
           </TouchableOpacity>
         </Link>
-        <Link href={"/scoreBoard"} asChild>
+        <Link href={"/ScoreBoard"} asChild>
           <TouchableOpacity style={generalStyles.btnPrimaryMedium}>
             <Text style={generalStyles.textBtnPrimary}>Recordes</Text>
           </TouchableOpacity>

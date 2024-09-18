@@ -5,6 +5,7 @@ import { generalStyles } from "../assets/styles/general";
 import { Link, router } from "expo-router";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import {firebase} from "../services/firebase"
+
 export default function Register() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');

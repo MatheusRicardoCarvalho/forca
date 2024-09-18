@@ -12,7 +12,7 @@ export default function index() {
         <Text style={loginStyles.title1}>Forca</Text>
       </View>
       <View style={loginStyles.optionsContainer}>
-        <Link href={"/register"} asChild>
+        <Link href={"/Register"} asChild>
         <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
           <Text style={generalStyles.textBtnPrimary}>Cadastrar-se</Text>
         </TouchableOpacity>

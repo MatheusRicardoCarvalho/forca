@@ -6,7 +6,7 @@ import ButtonPrimary from "../components/ButtonPrimary/ButtonPrimary";
 import ButtonSecondary from "../components/ButtonSecondary/ButtonSecondary";
 import { generalStyles } from "../assets/styles/general";
 
-export default function loseScreen() {
+export default function LoseScreen() {
     const params = useLocalSearchParams();
     const score = params?.score ? Number(params.score) : 0;
 
@@ -27,7 +27,7 @@ export default function loseScreen() {
                 <Text style={loseScreenStyles.numberText}>
                     {score}
                 </Text>
-                <ButtonPrimary textBtn="Denovo!"  onPress={() => router.push("/game")}/>
+                <ButtonPrimary textBtn="Denovo!"  onPress={() => router.push("/Game")}/>
                 <ButtonSecondary textBtn="Menu" onPress={() => router.push("/Menu")} />
             </View>
         </>

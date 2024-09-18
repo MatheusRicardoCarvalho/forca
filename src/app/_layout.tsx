@@ -19,17 +19,15 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <ContextProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="register" options={{ headerShown: false }} />
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="menu" options={{ headerShown: false }} />
-        <Stack.Screen name="scoreBoard" options={{ headerShown: false }} />
-        <Stack.Screen name="game" options={{ headerShown: false }} />
-        <Stack.Screen name="loseScreen" options={{ headerShown: false }} />
-        <Stack.Screen name="winScreen" options={{ headerShown: false }} />
+        <Stack.Screen name="Register" options={{ headerShown: false }} />
+        <Stack.Screen name="Login" options={{ headerShown: false }} />
+        <Stack.Screen name="Menu" options={{ headerShown: false }} />
+        <Stack.Screen name="ScoreBoard" options={{ headerShown: false }} />
+        <Stack.Screen name="Game" options={{ headerShown: false }} />
+        <Stack.Screen name="LoseScreen" options={{ headerShown: false }} />
+        <Stack.Screen name="WinScreen" options={{ headerShown: false }} />
       </Stack>
-    </ContextProvider>
   );
 }
