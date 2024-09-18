@@ -28,7 +28,7 @@ export default function WinScreen() {
                     {score}
                 </Text>
                 <ButtonPrimary textBtn="Denovo!"  onPress={() => router.push("/game")}/>
-                <ButtonSecondary textBtn="Menu" onPress={() => router.push("/menu")} />
+                <ButtonSecondary textBtn="Menu" onPress={() => router.push("/Menu")} />
             </View>
         </>
     );

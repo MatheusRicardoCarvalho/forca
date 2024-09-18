@@ -3,21 +3,41 @@ import { StyleSheet } from "react-native";
 
 
 export const scoreBoardStyles = StyleSheet.create({
-    title: {
-        color: Colors.light.tint,
-        fontFamily: "Roboto_900Black",
-        fontSize: 54
+    containerFull: {
+        flex: 1,
+        backgroundColor: '#fff',
     },
     containterTitle: {
-        paddingVertical: 8,
-        justifyContent: 'flex-start'
+        alignItems: 'center',
+        marginTop: 50,
+        marginBottom: 20,
     },
-    cotainerScoreBoard: {
-        justifyContent: "flex-start"
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
     },
-    containerFull: {
-        height: "100%",
-        justifyContent: "flex-start",
-        alignItems: "center"
-    }
-})
+    list: {
+        paddingHorizontal: 20,
+    },
+    scoreItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+    },
+    rank: {
+        width: 30,
+        fontWeight: 'bold',
+    },
+    email: {
+        flex: 1,
+        marginHorizontal: 10,
+    },
+    score: {
+        width: 50,
+        textAlign: 'right',
+        fontWeight: 'bold',
+    },
+});

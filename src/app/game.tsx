@@ -11,6 +11,9 @@ import { Boneco } from "../components/Boneco/Boneco";
 import ButtonPrimary from "../components/ButtonPrimary/ButtonPrimary";
 import ModalEuSei from "../components/ModalEuSei/ModalEuSei";
 import { router } from "expo-router";
+import { registerGame } from "../services/gameService";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 export default function Game() {
     const [tema, setTema] = useState<Tema>();
@@ -21,7 +24,9 @@ export default function Game() {
     const [cronometroIniciado, setCronometroIniciado] = useState(false);
     const [tempoDecorrido, setTempoDecorrido] = useState(0);
     const [modalVisible, setModalVisible] = useState(false);
-    const [tentativas, setTentativas] = useState(0)
+    const [tentativas, setTentativas] = useState(0);
+
+    const { user } = useContext(AuthContext);
 
     useLayoutEffect(() => {
         const { tema, palavra } = gameDataConfig();
@@ -81,11 +86,13 @@ export default function Game() {
         endGame(true)
     }
 
-    function endGame(win: boolean) {
+    async function endGame(win: boolean) {
         const tempoFinalFormatado = moment.utc(tempoDecorrido * 1000).format('HH:mm:ss');
 
         const score = CalculateScore(tempoFinalFormatado, tentativas, win);
-    
+        
+        await sendGame(score);
+
         if (win) {
             console.log("Tentativas: " + tentativas + "\n Time: " + tempoFinalFormatado);
             router.push({
@@ -109,6 +116,16 @@ export default function Game() {
     const pausarCronometro = () => {
         setCronometroIniciado(false);
     };
+
+    async function sendGame(score: number) {
+        if (user && user.email) {
+            try {
+                await registerGame(score, user.email);
+            } catch (error) {
+                console.error("Erro ao registrar o jogo:", error);
+            }
+        }
+    }
 
     return (
         <View>

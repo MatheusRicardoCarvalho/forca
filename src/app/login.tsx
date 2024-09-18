@@ -1,26 +1,30 @@
-import { TextInput, View, Text, TouchableOpacity } from "react-native";
+import { TextInput, View, Text, TouchableOpacity, Alert } from "react-native";
 import { loginStyles } from "../assets/styles/login";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { generalStyles } from "../assets/styles/general";
 import { Link, router } from "expo-router";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebase } from "../services/firebase";
+import AuthContext from "../context/AuthContext";
 
 export default function login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const authContext = useContext(AuthContext);
   const auth = getAuth(firebase);
 
   function signIn(){
     signInWithEmailAndPassword(auth, email, senha)
   .then((userCredential) => {
     const user = userCredential.user;
-    router.push("/menu")
+    authContext.setUser(user);
+    router.push("/Menu")
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     alert("Erro no login ! \nTente novamente mais tarde")
+    Alert.alert("Erro no login ! \nTente novamente mais tarde\n" +error.message)
   });
 
   }
