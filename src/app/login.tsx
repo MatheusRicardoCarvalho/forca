@@ -2,7 +2,7 @@ import { TextInput, View, Text, TouchableOpacity, Alert } from "react-native";
 import { loginStyles } from "../assets/styles/login";
 import { useContext, useState } from "react";
 import { generalStyles } from "../assets/styles/general";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebase } from "../services/firebase";
 import AuthContext from "../context/AuthContext";
@@ -13,21 +13,21 @@ export default function Login() {
   const authContext = useContext(AuthContext);
   const auth = getAuth(firebase);
 
-  function signIn(){
-    signInWithEmailAndPassword(auth, email, senha)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    authContext.setUser(user);
-    router.push("/Menu")
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert("Erro no login ! \nTente novamente mais tarde")
-    Alert.alert("Erro no login ! \nTente novamente mais tarde\n" +error.message)
-  });
-
+  async function signIn() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+      const user = userCredential.user;
+      authContext.setUser(user);
+      router.push("/Menu");
+    } catch (error) {
+      console.error("Erro no login:", error);
+      Alert.alert(
+        "Erro no login",
+        "Tente novamente mais tarde.\n" + (error instanceof Error ? error.message : "Erro desconhecido")
+      );
+    }
   }
+
   return (
     <View style={generalStyles.containerFullScreen}>
       <View style={loginStyles.titleContainer}>

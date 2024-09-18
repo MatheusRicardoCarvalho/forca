@@ -19,7 +19,8 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-      <Stack>
+    <ContextProvider>
+<Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="Register" options={{ headerShown: false }} />
         <Stack.Screen name="Login" options={{ headerShown: false }} />
@@ -29,5 +30,7 @@ export default function RootLayout() {
         <Stack.Screen name="LoseScreen" options={{ headerShown: false }} />
         <Stack.Screen name="WinScreen" options={{ headerShown: false }} />
       </Stack>
+    </ContextProvider>
+      
   );
 }

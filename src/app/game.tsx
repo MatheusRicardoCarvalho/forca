@@ -28,7 +28,7 @@ export default function Game() {
 
     const { user } = useContext(AuthContext);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const { tema, palavra } = gameDataConfig();
         setPalavra(palavra);
         setTema(tema);
@@ -96,13 +96,13 @@ export default function Game() {
         if (win) {
             console.log("Tentativas: " + tentativas + "\n Time: " + tempoFinalFormatado);
             router.push({
-                pathname: "/winScreen",
+                pathname: "/WinScreen",
                 params: { score },
             });
         } else {
             console.log("Tentativas: " + tentativas + "\n Time: " + tempoFinalFormatado);
             router.push({
-                pathname: "/loseScreen",
+                pathname: "/LoseScreen",
                 params: { score },
             });
         }

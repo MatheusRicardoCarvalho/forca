@@ -12,7 +12,6 @@ interface GameInterface {
 const [user,setUser] = useState<User>()
 
 
-
 export let usuarios ={
         user, 
         setUser

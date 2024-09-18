@@ -17,7 +17,7 @@ export default function index() {
           <Text style={generalStyles.textBtnPrimary}>Cadastrar-se</Text>
         </TouchableOpacity>
         </Link>
-        <Link href={"/login"} asChild>
+        <Link href={"/Login"} asChild>
         <TouchableOpacity style={generalStyles.btnPrimaryLarge}>
           <Text style={generalStyles.textBtnPrimary}>Login</Text>
         </TouchableOpacity>
