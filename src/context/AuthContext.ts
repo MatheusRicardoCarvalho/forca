@@ -1,23 +1,12 @@
 import { User } from "firebase/auth";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 
 
-interface GameInterface {
-    createdAt: Date; 
-    id: string;
-    score: number;
-    userEmail: string; // E-mail do usuário
+interface AuthContextType {
+    user: User | undefined;
+    setUser: (user: User | undefined) => void;
 }
 
-const [user,setUser] = useState<User>()
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-
-export let usuarios ={
-        user, 
-        setUser
-}
-
-const AuthContext = createContext(usuarios)
-
-export default AuthContext
-
+export default AuthContext;

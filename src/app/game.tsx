@@ -26,7 +26,7 @@ export default function Game() {
     const [modalVisible, setModalVisible] = useState(false);
     const [tentativas, setTentativas] = useState(0);
 
-    const { user } = useContext(AuthContext);
+    const  authContext  = useContext(AuthContext);
 
     useEffect(() => {
         const { tema, palavra } = gameDataConfig();
@@ -90,7 +90,7 @@ export default function Game() {
         const tempoFinalFormatado = moment.utc(tempoDecorrido * 1000).format('HH:mm:ss');
 
         const score = CalculateScore(tempoFinalFormatado, tentativas, win);
-        
+
         await sendGame(score);
 
         if (win) {
@@ -118,9 +118,9 @@ export default function Game() {
     };
 
     async function sendGame(score: number) {
-        if (user && user.email) {
+        if (authContext && authContext.user?.email) {
             try {
-                await registerGame(score, user.email);
+                await registerGame(score, authContext.user?.email);
             } catch (error) {
                 console.error("Erro ao registrar o jogo:", error);
             }
@@ -155,7 +155,7 @@ export default function Game() {
                         modalVisible={modalVisible} 
                         setModalVisible={setModalVisible}
                         palavraCorreta={palavra} 
-                        onValidarPalavra={verificarPalavraTentada} // Valida a tentativa
+                        onValidarPalavra={verificarPalavraTentada}
                     />
                 </Modal>
                 <ButtonPrimary textBtn="Eu sei!" onPress={() => setModalVisible(true)} />

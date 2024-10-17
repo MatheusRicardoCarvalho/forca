@@ -27,7 +27,7 @@ export default function WinScreen() {
                 <Text style={loseScreenStyles.numberText}>
                     {score}
                 </Text>
-                <ButtonPrimary textBtn="Denovo!"  onPress={() => router.push("/game")}/>
+                <ButtonPrimary textBtn="Denovo!"  onPress={() => router.push("/Game")}/>
                 <ButtonSecondary textBtn="Menu" onPress={() => router.push("/Menu")} />
             </View>
         </>

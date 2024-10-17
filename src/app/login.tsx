@@ -17,7 +17,7 @@ export default function Login() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, senha);
       const user = userCredential.user;
-      authContext.setUser(user);
+      authContext?.setUser(user);
       router.push("/Menu");
     } catch (error) {
       console.error("Erro no login:", error);

@@ -18,7 +18,7 @@ export default function Menu() {
   async function sair() {
     try {
       await signOut(auth);
-      authContext.setUser(undefined);
+      authContext?.setUser(undefined); // Define o usuário como indefinido
       router.push("/");
     } catch (error) {
       console.error("Erro ao sair:", error);
@@ -29,23 +29,25 @@ export default function Menu() {
     }
   }
 
+  const jogar = () => {
+    router.push("/Game");
+  };
+
   return (
     <View style={generalStyles.containerFullScreen}>
       <View style={menuStyles.imageContainer}>
         <Image source={boneco} />
       </View>
       <View style={loginStyles.optionsContainer}>
-        <Link href={"/Game"} asChild>
-          <TouchableOpacity style={generalStyles.btnPrimaryMedium}>
-            <Text style={generalStyles.textBtnPrimary}>Jogar</Text>
-          </TouchableOpacity>
-        </Link>
+        <TouchableOpacity style={generalStyles.btnPrimaryMedium} onPress={jogar}>
+          <Text style={generalStyles.textBtnPrimary}>Jogar</Text>
+        </TouchableOpacity>
         <Link href={"/ScoreBoard"} asChild>
           <TouchableOpacity style={generalStyles.btnPrimaryMedium}>
             <Text style={generalStyles.textBtnPrimary}>Recordes</Text>
           </TouchableOpacity>
         </Link>
-        <TouchableOpacity style={generalStyles.btnPrimaryMedium} onPress={() => sair()}>
+        <TouchableOpacity style={generalStyles.btnPrimaryMedium} onPress={sair}>
           <Text style={generalStyles.textBtnPrimary}>Sair</Text>
         </TouchableOpacity>
       </View>

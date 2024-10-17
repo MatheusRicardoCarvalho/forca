@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+# Jogo da Forca
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Tecnologias Utilizadas
 
-## Get started
+- **React Native**: Framework para desenvolvimento de aplicativos móveis utilizando JavaScript e React.
+- **Expo**: Ferramenta para facilitar o desenvolvimento e a construção de aplicativos React Native.
+- **expo-google-fonts/roboto**: Para poder utilizar a fonte Roboto
+- **Firebase**: Plataforma de desenvolvimento de aplicativos que fornece autenticação, banco de dados em tempo real e armazenamento na nuvem.
+- **Moment.js**: Biblioteca para manipulação e formatação de datas.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
 
-1. Install dependencies
+## Funcionalidades
 
+- **Tela de Login**: Permite que os usuários façam login utilizando e-mail e senha.
+- **Tela de Registro**: Permite que novos usuários se cadastrem no aplicativo.
+- **Jogo da Forca**: Os usuários podem jogar o clássico jogo da forca, onde devem adivinhar uma palavra letra por letra. A palavra é sorteada de acordo com um tema, os temas e as palavras para cada tema são predefinidos.
+- **Tela de Resultados**: Após o jogo, os usuários são redirecionados para uma tela que mostra se ganharam ou perderam e sua pontuação.
+- **Tela de Recordes**: Exibe os melhores resultados dos jogadores (implementação futura).
+
+## Arquitetura do Projeto
+
+O projeto foi organizado em uma estrutura de pastas que facilita a manutenção e a escalabilidade. Abaixo está uma breve descrição da estrutura:
+
+- **src/**: Contém todo o código-fonte do aplicativo.
+  - **app/**: Contém os componentes principais do aplicativo, como telas e lógica de navegação.
+    - **Login.tsx**: Componente responsável pela tela de login.
+    - **Register.tsx**: Componente responsável pela tela de registro.
+    - **Menu.tsx**: Componente que serve como menu principal do jogo.
+    - **Game.tsx**: Componente que contém a lógica do jogo da forca.
+    - **WinScreen.tsx**: Tela exibida quando o jogador ganha.
+    - **LoseScreen.tsx**: Tela exibida quando o jogador perde.
+    - **ScoreBoard.tsx**: Tela para exibir os recordes (implementação futura).
+  - **context/**: Contém o contexto de autenticação, que gerencia o estado do usuário.
+  - **components/**: Contém componentes reutilizáveis, como botões e modais.
+  - **assets/**: Contém os arquivos de estilo e imagens utilizadas no aplicativo.
+
+## Imagens
+
+Aqui estão algumas imagens do aplicativo:
+
+### Tela Inicial
+![Tela Inicial](./readme/tela1.png)
+
+### Tela de Login
+![Tela de Login](./readme/login.png)
+
+### Tela de Registro
+![Tela de Registro](./readme/cadastrar.png)
+
+### Menu do Jogo
+![Menu do Jogo](./readme/menu.png)
+
+### Jogo - Etapa 1
+![Jogo - Etapa 1](./readme/game1.png)
+
+### Jogo - Etapa 2
+![Jogo - Etapa 2](./readme/game2.png)
+
+### Tela de Vitória
+![Tela de Vitória](./readme/tela_win.png)
+
+### Tela de Derrota
+![Tela de Derrota](./readme/tela_lose.png)
+
+## Como Rodar o Projeto Localmente
+
+Para rodar o projeto localmente, siga os passos abaixo:
+
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/MatheusRicardoCarvalho/forca.git
+   cd forca
+   ```
+
+2. **Instale as dependências**:
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Configure o Firebase**:
+   - Crie um projeto no [Firebase Console](https://console.firebase.google.com/).
+   - Adicione um aplicativo e copie as credenciais de configuração do Firebase.
+   - Atualize as credenciais no arquivo `src/services/firebase.js`.
 
+4. **Inicie o servidor de desenvolvimento**:
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+5. **Abra o aplicativo**:
+   - Use um emulador Android/iOS ou escaneie o QR code com o aplicativo Expo Go no seu dispositivo móvel.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
